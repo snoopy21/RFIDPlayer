@@ -3,9 +3,9 @@ based on example_get_uid.py
 reads uid an looks for an existing configuration
 else it plays RadioBob
 """
-
 import RPi.GPIO as GPIO
 
+from pathlib import Path
 from pn532 import *
 
 
@@ -17,6 +17,7 @@ if __name__ == '__main__':
         pn532.SAM_configuration()
 
         print('Waiting for RFID/NFC card...')
+        base_path = (Path(__file__).parent / "../nfc_uids")
         nfc_uid_string = ''
         for_counter = 0
         while True:
@@ -34,6 +35,15 @@ if __name__ == '__main__':
                     nfc_uid_string += '_' + hex(i)
                 for_counter += 1
             print('UID-String:', nfc_uid_string)
+            # try open file
+            try:
+                nfc_uid_path = (base_path / nfc_uid_string).resolve()
+                #print(nfc_uid_path)
+                with open(nfc_uid_path) as f:
+                    print(f.read().rstrip())
+                f.close()
+            except IOError as e:
+                print('IOError', e)
             for_counter = 0
             nfc_uid_string = ''
     except Exception as e:
