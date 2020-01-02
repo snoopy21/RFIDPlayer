@@ -1,2 +1,2 @@
 # RFIDPlayer
-Player with RFID support
+Raspberrypi-Player with RFID support
