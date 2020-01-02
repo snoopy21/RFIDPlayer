@@ -3,7 +3,7 @@ based on example_get_uid.py
 reads uid an looks for an existing configuration
 else it plays RadioBob
 """
-import sys
+import sys, subprocess
 import RPi.GPIO as GPIO
 
 from pathlib import Path
@@ -44,12 +44,14 @@ if __name__ == '__main__':
                     nfc_uid_path = (base_path / nfc_uid_string).resolve()
                     #print(nfc_uid_path)
                     with open(nfc_uid_path) as f:
-                        print(f.read().rstrip())
+                        #print(f.read().rstrip())
+                        subprocess.run(['mplayer', '-playlist', f.read().rstrip()])
                     f.close()
                     # remember actual uid
                     active_uid = nfc_uid_string
                 except IOError as e:
                     print('IOError', e)
+                    subprocess.run(['mplayer', 'http://streams.radiobob.de/bob-shlive/mp3-192/mediaplayer/'])
                 except:
                     print('was ging gründlich schief:', sys.exc_info()[0])
             else:
