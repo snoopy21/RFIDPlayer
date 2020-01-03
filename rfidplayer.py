@@ -6,9 +6,15 @@ else it plays RadioBob
 import sys, subprocess
 import RPi.GPIO as GPIO
 
+from multiprocessing import Process
 from pathlib import Path
 from pn532 import *
 
+def mplayer(file_to_play):
+    if file_to_play.endswith('.m3u') or file_to_play.endswith('.m3u8'):
+        subprocess.run(['mplayer', '-playlist', file_to_play])
+    else:
+        subprocess.run(['mplayer', file_to_play])
 
 if __name__ == '__main__':
     try:
@@ -22,6 +28,7 @@ if __name__ == '__main__':
         nfc_uid_string = ''
         active_uid = ''
         for_counter = 0
+        mplayer_process_id = 0
         while True:
             # Check if a card is available to read
             uid = pn532.read_passive_target(timeout=0.5)
@@ -42,16 +49,44 @@ if __name__ == '__main__':
                 # try open file
                 try:
                     nfc_uid_path = (base_path / nfc_uid_string).resolve()
-                    #print(nfc_uid_path)
                     with open(nfc_uid_path) as f:
-                        #print(f.read().rstrip())
-                        subprocess.run(['mplayer', '-playlist', f.read().rstrip()])
+                        try:
+                            if mplayer_process_id != 0:
+                                if mplayer_process.is_alive():
+                                    print(mplayer_process.pid, mplayer_process_id)
+                                    #subprocess.run(['kill', '-9', str(mplayer_process_id)])
+                                    mplayer_process.terminate()
+                                    mplayer_process.join()
+                                else:
+                                    print(mplayer_process, mplayer_process.is_alive())
+                        except NameError:
+                            print('bisher noch kein mplayer-Process gestartet')
+                        mplayer_process = Process(target=mplayer, args=(f.read().rstrip(), ))
+                        mplayer_process.start()
+                        mplayer_process_id = mplayer_process.pid
+                        print('Process-ID:', mplayer_process_id)
                     f.close()
                     # remember actual uid
                     active_uid = nfc_uid_string
                 except IOError as e:
                     print('IOError', e)
-                    subprocess.run(['mplayer', 'http://streams.radiobob.de/bob-shlive/mp3-192/mediaplayer/'])
+                    try:
+                        if mplayer_process_id != 0:
+                            if mplayer_process.is_alive():
+                                print(mplayer_process.pid, mplayer_process_id)
+                                #subprocess.run(['kill', '-9', str(mplayer_process_id)])
+                                mplayer_process.terminate()
+                                mplayer_process.join()
+                            else:
+                                print(mplayer_process, mplayer_process.is_alive())
+                    except NameError:
+                        print('bisher noch kein mplayer-Process gestartet')
+                    print(mplayer_process, mplayer_process.pid, mplayer_process.is_alive())
+                    mplayer_process = Process(target=mplayer, args=('http://streams.radiobob.de/bob-shlive/mp3-192/mediaplayer/', ))
+                    mplayer_process.start()
+                    mplayer_process_id = mplayer_process.pid
+                    print('Process-ID:', mplayer_process_id)
+                    active_uid = nfc_uid_string
                 except:
                     print('was ging gründlich schief:', sys.exc_info()[0])
             else:
