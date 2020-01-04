@@ -23,7 +23,9 @@ if __name__ == '__main__':
 
         # Configure PN532 to communicate with MiFare cards
         pn532.SAM_configuration()
-
+        
+        # Startup Sound
+        mplayer('/home/pi/RFIDPlayer/dampflokomotive.mp3')
         print('Waiting for RFID/NFC card...')
         base_path = (Path(__file__).parent / "../nfc_uids")
         nfc_uid_string = ''
@@ -57,9 +59,10 @@ if __name__ == '__main__':
                 except IOError as e:
                     print('IOError', e)
                     #mplayer('http://streams.radiobob.de/bob-shlive/mp3-192/mediaplayer/', )
-                    mplayer('/home/pi/music/pepe_lienhard-swiss_lady.mp3')
+                    mplayer('http://streams.radiobob.de/bob-shlive/mp3-192/mediaplayer/')
                     active_uid = nfc_uid_string
                 except:
+                    mplayer('/home/pi/RFIDPlayer/polizeisirene.mp3')
                     print('was ging gründlich schief:', sys.exc_info()[0])
             else:
                 print('läuft bereits')
