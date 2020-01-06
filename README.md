@@ -17,7 +17,7 @@ Raspberrypi-Musik-Player with RFID support
 
 ### Shutdown/Startup per Knopf
 - Knopf mit Pin 5 (SCL bzw. GPIO3) und Pin 6 (GND) verbinden
-- /boot/config.txt editieren und ´´´dtoverlay=gpio-shutdown,gpio_pin=3´´´ hinzufügen
+- /boot/config.txt editieren und ```dtoverlay=gpio-shutdown,gpio_pin=3``` hinzufügen
 
 ### weitere Knöpfe
 - Pause PIN 31 (GPIO6) und PIN 39 (GND)
@@ -29,16 +29,16 @@ sudo mkdir /mnt/glenelg_music
 sudo vi /etc/fstab -> 
 
 ### /etc/rc.local anpassen
-mit ´´´sudo vi /etc/rc.local´´´ editieren
-´´´
+mit ```sudo vi /etc/rc.local``` editieren
+```
 # Create named pipe for mplayer
 mkfifo /tmp/mplayer-control
 chmod 666 /tmp/mplayer-control
-´´´
+```
 
 ### .bashrc anpassen
 in die .bashrc des users pi, auto login aktivieren nicht vergessen, folgendes einfügen:
-´´´
+```
 # Start mplayer in slave mode
 mplayer -slave -input file=/tmp/mplayer-control -idle &
 
@@ -47,7 +47,7 @@ python3 /home/pi/RFIDPlayer/rfidplayer.py &
 
 # Start des Button-Listener scripts
 python3 /home/pi/RFIDPlayer/button_listener.py &
-´´´
+```
 
 ### RFIDPlayer Software installieren
 git clone https://github.com/snoopy21/RFIDPlayer.git
@@ -72,7 +72,7 @@ sudo cp /lib/systemd/system/triggerhappy.service /etc/systemd/system
 
 Triggerhappy -> Berechtigung... (chown pi audio.conf)
 /etc/triggerhappy/triggers.d/audio.conf:
-´´´KEY_VOLUMEUP 1  /usr/bin/amixer -M set PCM 5%+
+```KEY_VOLUMEUP 1  /usr/bin/amixer -M set PCM 5%+
 
 KEY_VOLUMEUP 2  /usr/bin/amixer -M set PCM 5%+
 
@@ -80,7 +80,7 @@ KEY_VOLUMEDOWN 1  /usr/bin/amixer -M set PCM 5%-
 
 KEY_VOLUMEDOWN 2  /usr/bin/amixer -M set PCM 5%- 
 
-KEY_MUTE 1 /usr/bin/amixer set PCM toggle´´´
+KEY_MUTE 1 /usr/bin/amixer set PCM toggle```
 
 # inspiriert von
 - https://www.instructables.com/id/Raspberry-Pi-based-RFID-Music-Robot/
