@@ -72,7 +72,8 @@ sudo cp /lib/systemd/system/triggerhappy.service /etc/systemd/system
 
 Triggerhappy -> Berechtigung... (chown pi audio.conf)
 /etc/triggerhappy/triggers.d/audio.conf:
-```KEY_VOLUMEUP 1  /usr/bin/amixer -M set PCM 5%+
+```
+KEY_VOLUMEUP 1  /usr/bin/amixer -M set PCM 5%+
 
 KEY_VOLUMEUP 2  /usr/bin/amixer -M set PCM 5%+
 
@@ -80,7 +81,8 @@ KEY_VOLUMEDOWN 1  /usr/bin/amixer -M set PCM 5%-
 
 KEY_VOLUMEDOWN 2  /usr/bin/amixer -M set PCM 5%- 
 
-KEY_MUTE 1 /usr/bin/amixer set PCM toggle```
+KEY_MUTE 1 /usr/bin/amixer set PCM toggle
+```
 
 # inspiriert von
 - https://www.instructables.com/id/Raspberry-Pi-based-RFID-Music-Robot/
