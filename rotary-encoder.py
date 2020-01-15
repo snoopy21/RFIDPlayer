@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
    CLOCKPIN = 16
    DATAPIN = 37
-   SWITCHPIN = 40
+   SWITCHPIN = 18
 
    GPIO.setmode(GPIO.BCM)
 
