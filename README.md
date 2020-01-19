@@ -85,6 +85,11 @@ KEY_VOLUMEDOWN 2  /usr/bin/amixer -M set PCM 5%-
 KEY_MUTE 1 /usr/bin/amixer set PCM toggle
 ```
 
+### Services installieren
+sudo cp rotary-encoder.service /etc/systemd/system/rotary-encoder.service
+sudo systemctl enable rotary-encoder.service
+sudo chmod +x rotary-encoder.py
+
 # inspiriert von
 - https://www.instructables.com/id/Raspberry-Pi-based-RFID-Music-Robot/
 - https://www.heise.de/select/ct/2017/17/1502995683647692
