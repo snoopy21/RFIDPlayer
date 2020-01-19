@@ -20,6 +20,7 @@ class KY040:
         # data and clock have pullups at the PCB
         GPIO.setup(self.clockPin, GPIO.IN)
         GPIO.setup(self.dataPin, GPIO.IN)
+        GPIO.setup(self.switchPin, GPIO.IN)
 
         if None != self.switchPin:
             GPIO.setup(self.switchPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -47,6 +48,6 @@ class KY040:
     def _switchCallback(self, pin):
         if None == self.switchPin:
             return
-
+        
         if GPIO.input(self.switchPin) == 0:
             self.switchCallback()
