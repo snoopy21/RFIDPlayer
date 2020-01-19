@@ -21,7 +21,7 @@ def switchPressed(dummy):
 if __name__ == "__main__":
 
    CLOCKPIN = 16
-   DATAPIN = 37
+   DATAPIN = 15
    SWITCHPIN = 18
 
    GPIO.setmode(GPIO.BCM)

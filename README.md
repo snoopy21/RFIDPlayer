@@ -23,7 +23,7 @@ Raspberrypi-Musik-Player with RFID support
 - Pause PIN 31 (GPIO6) und PIN 39 (GND)
 - Skip backward PIN 33 (GPIO13) und PIN 34 (GND)
 - Skip forward PIN 29 (GPIO5) und PIN 30 (GND)
-- Drehschalter CLK -> PIN 16 (GPIO 23), DT -> PIN 37 (GPIO 26), SW -> PIN 18 (GPIO 24), + -> PIN 4 (5V), GND -> PIN 25 (GND)
+- Drehschalter CLK -> PIN 16 (GPIO 23), DT -> PIN 15 (GPIO 22), SW -> PIN 18 (GPIO 24), + -> PIN 4 (5V), GND -> PIN 25 (GND)
 
 ### NFS-Share mounten beim Start
 sudo mkdir /mnt/glenelg_music
