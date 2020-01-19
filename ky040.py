@@ -37,6 +37,7 @@ class KY040:
             GPIO.remove_event_detect(self.switchPin)
 
     def _clockCallback(self, pin):
+        echo("_clockCallback:", pin)
         if GPIO.input(self.clockPin) == 0:
             data = GPIO.input(self.dataPin)
             if data == 1:
@@ -45,6 +46,7 @@ class KY040:
                 self.rotaryCallbackCW()
 
     def _switchCallback(self, pin):
+        echo("_switchCallback:", pin)
         if None == self.switchPin:
             return
 
