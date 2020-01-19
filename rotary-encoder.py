@@ -16,7 +16,7 @@ def rotaryChangeCCW():
    print('volumedown')
    check_call("/usr/bin/amixer -M set PCM 5%-", shell=True)
 
-def switchPressed(dummy):
+def switchPressed():
    print("mute")
    check_call("/usr/bin/amixer set PCM toggle", shell=True)
 
