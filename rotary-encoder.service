@@ -3,7 +3,6 @@ Description=Rotary Encoder Service
 After=network.target iptables.service firewalld.service
 
 [Service]
-Restart=always
 WorkingDirectory=/home/pi/RFIDPlayer
 ExecStart=/home/pi/RFIDPlayer/rotary-encoder.py
 
