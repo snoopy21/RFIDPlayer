@@ -9,13 +9,16 @@ from subprocess import check_call
 
 
 def rotaryChangeCW():
-   check_call("./scripts/playout_controls.sh -c=volumeup", shell=True)
+   echo("volumeup")
+   check_call("/usr/bin/amixer -M set PCM 5%+", shell=True)
 
 def rotaryChangeCCW():
-   check_call("./scripts/playout_controls.sh -c=volumedown", shell=True)
+   echo('volumedown')
+   check_call("/usr/bin/amixer -M set PCM 5%-", shell=True)
 
 def switchPressed(dummy):
-   check_call("./scripts/playout_controls.sh -c=mute", shell=True)
+   echo("mute")
+   check_call("/usr/bin/amixer set PCM toggle", shell=True)
 
 
 if __name__ == "__main__":

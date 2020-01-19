@@ -4,7 +4,7 @@ After=network.target iptables.service firewalld.service
 
 [Service]
 Restart=always
-WorkingDirectory=/home/pi/RPi-Jukebox-RFID
+WorkingDirectory=/home/pi/RFIDPlayer
 ExecStart=/home/pi/RFIDPlayer/rotary-encoder.py
 
 [Install]
