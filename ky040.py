@@ -40,10 +40,11 @@ class KY040:
     def _clockCallback(self, pin):
         if GPIO.input(self.clockPin) == 0:
             data = GPIO.input(self.dataPin)
+            # je nach gewünschter Drehrichtung anpassen
             if data == 1:
-                self.rotaryCallbackCCW()
-            else:
                 self.rotaryCallbackCW()
+            else:
+                self.rotaryCallbackCCW()
 
     def _switchCallback(self, pin):
         if None == self.switchPin:

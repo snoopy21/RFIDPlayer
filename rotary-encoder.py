@@ -9,15 +9,15 @@ from subprocess import check_call
 
 
 def rotaryChangeCW():
-   print("volumeup")
+   #print("volumeup")
    check_call("/usr/bin/amixer -M set PCM 5%+", shell=True)
 
 def rotaryChangeCCW():
-   print('volumedown')
+   #print('volumedown')
    check_call("/usr/bin/amixer -M set PCM 5%-", shell=True)
 
 def switchPressed():
-   print("mute")
+   #print("mute")
    check_call("/usr/bin/amixer set PCM toggle", shell=True)
 
 
