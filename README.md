@@ -63,7 +63,7 @@ sudo apt-get install python3-pip
 sudo pip3 install spidev
 sudo pip3 install serial
 
-Jumper-Settings -> Dokumentation https://www.waveshare.com/wiki/PN532_NFC_HAT
+Jumper-Settings (als SPI) -> Dokumentation https://www.waveshare.com/wiki/PN532_NFC_HAT
 
 ### Einstellungen Audio
 install pulseaudio
