@@ -26,8 +26,8 @@ Raspberrypi-Musik-Player with RFID support
 - Drehschalter CLK -> PIN 16 (GPIO 23), DT -> PIN 15 (GPIO 22), SW -> PIN 18 (GPIO 24), + -> PIN 4 (5V), GND -> PIN 25 (GND)
 
 ### NFS-Share mounten beim Start
-sudo mkdir /mnt/glenelg_music
-sudo vi /etc/fstab -> 
+- sudo mkdir /mnt/glenelg_music
+- sudo vi /etc/fstab -> ```192.168.xxx.xxx:/volume1/music              /mnt/glenelg_music        nfs    defaults                      0  0```
 
 ### /etc/rc.local anpassen
 mit ```sudo vi /etc/rc.local``` editieren
@@ -56,19 +56,29 @@ git clone https://github.com/snoopy21/RFIDPlayer.git
 ### NFC Hat
 Beispielcodes:
 wget https://www.waveshare.com/w/upload/6/67/Pn532-nfc-hat-code.7z
-allenfalls folgende Liberaries installieren
+
+allenfalls folgende Liberaries installieren:
+
 sudo apt-get install python3-rpi.gpio
+
 sudo apt install python3-gpiozero (nur falls Raspbian Lite verwendet wird)
+
 sudo apt-get install python3-pip
+
 sudo pip3 install spidev
+
 sudo pip3 install serial
 
 Jumper-Settings (als SPI) -> Dokumentation https://www.waveshare.com/wiki/PN532_NFC_HAT
 
 ### Einstellungen Audio
+
 install pulseaudio
+
 aplay -l
+
 interne Soundkarte abschalten -> sudo vi /usr/share/alsa/alsa.conf
+
 sudo cp /lib/systemd/system/triggerhappy.service /etc/systemd/system
 
 Triggerhappy -> Berechtigung... (chown pi audio.conf)
@@ -86,8 +96,11 @@ KEY_MUTE 1 /usr/bin/amixer set PCM toggle
 ```
 
 ### Services installieren
+
 sudo cp rotary-encoder.service /etc/systemd/system/rotary-encoder.service
+
 sudo systemctl enable rotary-encoder.service
+
 sudo chmod +x rotary-encoder.py
 
 # inspiriert von
