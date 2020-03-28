@@ -73,7 +73,9 @@ Jumper-Settings (als SPI) -> Dokumentation https://www.waveshare.com/wiki/PN532_
 
 ### Einstellungen Audio
 
-install pulseaudio
+sudo apt-get install pulseaudio
+
+sudo apt-get install mplayer
 
 aplay -l
 
