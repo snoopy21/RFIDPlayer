@@ -80,10 +80,13 @@ sudo apt-get install mplayer
 aplay -l
 
 interne Soundkarte abschalten -> sudo vi /usr/share/alsa/alsa.conf
+```defaults.ctl.card 1
+defaults.pcm.card 1
+```
 
 sudo cp /lib/systemd/system/triggerhappy.service /etc/systemd/system
 
-Triggerhappy -> Berechtigung... (chown pi audio.conf)
+Triggerhappy (wird benötigt für Knöpfe an den Logitechboxen) -> Berechtigung... (chown pi audio.conf)
 /etc/triggerhappy/triggers.d/audio.conf:
 ```
 KEY_VOLUMEUP 1  /usr/bin/amixer -M set PCM 5%+
