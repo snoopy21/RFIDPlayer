@@ -80,7 +80,8 @@ sudo apt-get install mplayer
 aplay -l
 
 interne Soundkarte abschalten -> sudo vi /usr/share/alsa/alsa.conf
-```defaults.ctl.card 1
+```
+defaults.ctl.card 1
 defaults.pcm.card 1
 ```
 
